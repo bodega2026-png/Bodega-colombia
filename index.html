@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bodega Ishop Colombia</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f5f7;
+    color:#111;
+}
+
+header{
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.logo{
+    width:150px;
+    max-height:90px;
+    object-fit:contain;
+    margin-bottom:10px;
+}
+
+header h1{
+    font-size:30px;
+}
+
+header p{
+    color:#bbb;
+    margin-top:6px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#000,#333);
+    color:white;
+    text-align:center;
+    padding:50px 20px;
+}
+
+.hero h2{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    color:#ddd;
+    margin-bottom:25px;
+}
+
+.whatsapp-btn{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:14px 25px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.catalogo{
+    max-width:1200px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.catalogo h2{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:30px;
+}
+
+.productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.producto{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+.producto img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    margin-bottom:15px;
+}
+
+.producto h3{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.capacidad{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.producto label{
+    display:block;
+    font-weight:bold;
+    margin:10px 0 5px;
+}
+
+.producto select{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    background:white;
+}
+
+.precio{
+    font-size:23px;
+    font-weight:bold;
+    margin:18px 0;
+}
+
+.agregar{
+    width:100%;
+    border:none;
+    background:#0071e3;
+    color:white;
+    padding:13px;
+    border-radius:25px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.agregar:hover{
+    background:#005bb5;
+}
+
+.carrito{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    border:none;
+    background:#000;
+    color:white;
+    font-size:27px;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+    z-index:20;
+}
+
+.contador{
+    position:absolute;
+    top:-5px;
+    right:-3px;
+    background:#e53935;
+    color:white;
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.panel{
+    position:fixed;
+    right:-420px;
+    top:0;
+    width:400px;
+    max-width:95%;
+    height:100%;
+    background:white;
+    box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    z-index:30;
+    padding:25px;
+    transition:.3s;
+    overflow-y:auto;
+}
+
+.panel.activo{
+    right:0;
+}
+
+.panel h2{
+    margin-bottom:20px;
+}
+
+.cerrar{
+    float:right;
+    border:none;
+    background:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.item-carrito{
+    border-bottom:1px solid #ddd;
+    padding:15px 0;
+}
+
+.item-carrito strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.eliminar{
+    margin-top:8px;
+    border:none;
+    background:#e53935;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.total{
+    font-size:22px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.formulario input,
+.formulario textarea{
+    width:100%;
+    padding:12px;
+    margin:7px 0;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+.pedir{
+    width:100%;
+    border:none;
+    background:#25D366;
+    color:white;
+    padding:15px;
+    border-radius:25px;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.info{
+    background:white;
+    text-align:center;
+    padding:45px 20px;
+    margin-top:50px;
+}
+
+.info h2{
+    margin-bottom:20px;
+}
+
+.info p{
+    margin:10px 0;
+}
+
+footer{
+    background:#000;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+@media(max-width:600px){
+    .hero h2{
+        font-size:29px;
+    }
+
+    .panel{
+        width:100%;
+        max-width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<img src=img/logo.jpg class="logo" alt="Logo">
+
+<h1>iPhone Store</h1>
+
+<p>Tu tienda de iPhone en Colombia</p>
+
+</header>
+
+
+<section class="hero">
+
+<h2>📱 Encuentra tu iPhone ideal</h2>
+
+<p>
+Modelos de iPhone con 256 GB.
+Selecciona tu modelo y color favorito.
+</p>
+
+<a class="whatsapp-btn"
+href="https://wa.me/573024537567"
+target="_blank">
+💬 Atención por WhatsApp
+</a>
+
+</section>
+
+
+<section class="catalogo">
+
+<h2>Todos nuestros modelos</h2>
+
+<div class="productos">
+
+  <!-- iPHONE 11 -->
+
+<div class="producto">
+
+<img src="img/iphone11.jpg" alt="iPhone 11">  
+<img src="img/iphone112.jpg" alt="iPhone 11">
+<img src="img/iphone113.jpg" alt="iPhone 11">
+<img src="img/iphone114.jpg" alt="iPhone 11">
+
+
+<h3>iPhone 11</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-1">
+<option>Negro</option>
+<option>Blanco</option>
+<option>Rojo</option>
+<option>Morado</option>
+</select>
+
+<p class="precio">$750.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 11','color-1',750000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 11 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone115.jpg" alt="iPhone 11 pro max">  
+<img src="img/iphone116.jpg" alt="iPhone 11 pro max">
+<img src="img/iphone117.jpg" alt="iPhone 11 pro max">
+<img src="img/iphone118.jpg" alt="iPhone 11 pro max">
+
+<h3>iPhone 11 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-2">
+<option>Verde noche</option>
+<option>Gris espacial</option>
+<option>Plata</option>
+<option>Oro</option>
+</select>
+
+<p class="precio">$900.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 11 Pro Max','color-2',900000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 12 -->
+
+<div class="producto">
+
+<img src="img/iphone119.jpg" alt="iPhone 12">  
+<img src="img/iphone120.jpg" alt="iPhone 12">
+<img src="img/iphone121.jpg" alt="iPhone 12">
+<img src="img/iphone123.jpg" alt="iPhone 12">
+
+
+<h3>iPhone 12</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-3">
+<option>Negro</option>
+<option>Blanco</option>
+<option>Azul</option>
+<option>Morado</option>
+
+</select>
+
+<p class="precio">$1.100.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 12','color-3',1100000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 12 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone162.jpg" alt="iPhone 12 pro max">  
+<img src="img/iphone163.jpg" alt="iPhone 12 pro max">
+<img src="img/iphone164.jpg" alt="iPhone 12 pro max">
+<h3>iPhone 12 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-4">
+<option>Gris Grafito</option>
+<option>Oro</option>
+<option>Azul</option>
+</select>
+
+<p class="precio">$1.250.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 12 Pro Max','color-4',1250000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 13 -->
+
+<div class="producto">
+
+<img src="img/iphone125.jpg" alt="iPhone 13">  
+<img src="img/iphone126.jpg" alt="iPhone 13">
+<img src="img/iphone127.jpg" alt="iPhone 13">
+<img src="img/iphone128.jpg" alt="iPhone 13">
+
+<h3>iPhone 13</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-5">
+<option>Negro</option>
+<option>Blanco</option>
+<option>Rosa</option>
+<option>Rojo</option>
+
+</select>
+
+<p class="precio">$1.350.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 13','color-5',1350000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 13 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone129.jpg" alt="iPhone 13 pro max">  
+<img src="img/iphone130.jpg" alt="iPhone 13 pro max">
+<img src="img/iphone131.jpg" alt="iPhone 13 pro max">
+<img src="img/iphone132.jpg" alt="iPhone 13 pro max">
+
+
+<h3>iPhone 13 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-6">
+<option>Grafito</option>
+<option>Oro</option>
+<option>Plata</option>
+<option>Azul Sierra</option>
+</select>
+
+<p class="precio">$1.550.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 13 Pro Max','color-6',1550000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 14 -->
+
+<div class="producto">
+
+<img src="img/iphone133.jpg" alt="iPhone 14">  
+<img src="img/iphone134.jpg" alt="iPhone 14">
+<img src="img/iphone135.jpg" alt="iPhone 14">
+<img src="img/iphone136.jpg" alt="iPhone 14">
+
+
+<h3>iPhone 14</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-7">
+<option>Blanco</option>
+<option>Negro</option>
+<option>Azul</option>
+<option>Rosado</option>
+</select>
+
+<p class="precio">$1.850.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 14','color-7',1850000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 14 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone140.jpg" alt="iPhone 14 pro max">  
+<img src="img/iphone139.jpg" alt="iPhone 14 pro max">
+<img src="img/iphone140.jpg" alt="iPhone 14 pro max">
+<img src="img/iphone138.jpg" alt="iPhone 14 pro max">
+
+<h3>iPhone 14 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-8">
+<option>Negro</option>
+<option>Oro</option>
+<option>Plata</option>
+<option>Morado oscuro</option>
+</select>
+
+<p class="precio">$2.100.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 14 Pro Max','color-8',2100000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 15 -->
+
+<div class="producto">
+<img src="img/iphone141.jpg" alt="iPhone 15">  
+<img src="img/iphone142.jpg" alt="iPhone 15">
+<img src="img/iphone143.jpg" alt="iPhone 15">
+<img src="img/iphone144.jpg" alt="iPhone 15">
+
+
+<h3>iPhone 15</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-9">
+<option>Negro</option>
+<option>Verde</option>
+<option>Azul</option>
+<option>Rosa</option>
+</select>
+
+<p class="precio">$2.200.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 15','color-9',2200000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 15 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone145.jpg" alt="iPhone 15 pro max">  
+<img src="img/iphone146.jpg" alt="iPhone 15 pro max">
+<img src="img/iphone147.jpg" alt="iPhone 15 pro max">
+
+
+<h3>iPhone 15 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-10">
+<option>Titanio Negro</option>
+<option>Titanio Blanco</option>
+<option>Titanio Azul</option>
+</select>
+
+<p class="precio">$2.500.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 15 Pro Max','color-10',2500000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 16 -->
+
+<div class="producto">
+
+<img src="img/iphone148.jpg" alt="iPhone 16">  
+<img src="img/iphone149.jpg" alt="iPhone 16">
+<img src="img/iphone150.jpg" alt="iPhone 16">
+<img src="img/iphone151.jpg" alt="iPhone 16">
+
+
+<h3>iPhone 16</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-11">
+<option>Negro</option>
+<option>Blanco</option>
+<option>Rosa</option>
+<option>Ultramar</option>
+</select>
+
+<p class="precio">$2.700.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 16','color-11',2700000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 16 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone152.jpg" alt="iPhone 16 pro max">  
+<img src="img/iphone153.jpg" alt="iPhone 16 pro max">
+<img src="img/iphone154.jpg" alt="iPhone 16 pro max">
+<h3>iPhone 16 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-12">
+<option>Titanio Blanco</option>
+<option>Titanio Natural</option>
+<option>Titanio Desierto</option>
+</select>
+
+<p class="precio">$2.950.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 16 Pro Max','color-12',2950000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 17 -->
+
+<div class="producto">
+
+<img src="img/iphone155.jpg" alt="iPhone 17">  
+<img src="img/iphone156.jpg" alt="iPhone 17">
+<img src="img/iphone157.jpg" alt="iPhone 17">
+<img src="img/iphone158.jpg" alt="iPhone 17">
+
+<h3>iPhone 17</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-13">
+<option>Negro</option>
+<option>Blanco</option>
+<option>Lavanda</option>
+<option>Salvia</option>
+<option>Azul neblina</option>
+</select>
+
+<p class="precio">$3.150.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 17','color-13',3150000)">
+Agregar al carrito
+</button>
+
+
+</div>
+
+
+<!-- iPHONE 17 PRO -->
+
+<div class="producto">
+
+<img src="img/iphone159.jpg" alt="iPhone 17 pro">  
+<img src="img/iphone160.jpg" alt="iPhone 17 pro">
+<img src="img/iphone161.jpg" alt="iPhone 17 pro">
+
+
+
+<h3>iPhone 17 Pro</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-15">
+<option>Naranja</option>
+<option>Azul</option>
+<option>Plata (Silver)</option>
+</select>
+
+<p class="precio">$3.750.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 17 Pro','color-15',3750000)">
+Agregar al carrito
+</button>
+
+</div>
+
+
+<!-- iPHONE 17 PRO MAX -->
+
+<div class="producto">
+
+<img src="img/iphone159.jpg" alt="iPhone 17 pro">  
+<img src="img/iphone160.jpg" alt="iPhone 17 pro">
+<img src="img/iphone161.jpg" alt="iPhone 17 pro">
+
+
+<h3>iPhone 17 Pro Max</h3>
+
+<p class="capacidad">256 GB</p>
+
+<label>Color</label>
+
+<select id="color-16">
+<option>Naranja</option>
+<option>Azul</option>
+<option>Plata (Silver)</option>
+</select>
+
+<p class="precio">$4.250.000 COP</p>
+
+<button class="agregar"
+onclick="agregar('iPhone 17 Pro Max','color-16',4250000)">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<section class="info">
+
+<h2>🚚 Información de compra</h2>
+
+<p>✅ Atención personalizada por WhatsApp</p>
+
+<p>📦 Entregas disponibles</p>
+
+<p>💳 Pago contra entrega con el 20% del valor</p>
+
+<p>📱 Todos nuestros modelos disponibles en 256 GB</p>
+
+<br>
+
+<h2>📍 Nuestra ubicación</h2>
+
+<p>
+Aeropuerto Internacional El Dorado (BOG)
+</p>
+
+<p>
+Ac. 26 #103-09, Fontibón, Bogotá, Colombia
+</p>
+
+<p>🕐 Horario: 7:00 AM – 7:00 PM</p>
+
+<p>📞 +57 302 453 7567</p>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 iPhone Store Colombia</p>
+
+<p>Todos los derechos reservados.</p>
+
+</footer>
+
+
+<!-- CARRITO -->
+
+<button class="carrito" onclick="abrirCarrito()">
+
+🛒
+
+<span class="contador" id="contador">0</span>
+
+</button>
+
+
+<div class="panel" id="panel">
+
+<button class="cerrar" onclick="cerrarCarrito()">✕</button>
+
+<h2>🛒 Tu carrito</h2>
+
+<div id="lista"></div>
+
+<div class="total" id="total">
+Total: $0 COP
+</div>
+
+
+<div class="formulario">
+
+<h3>Datos del cliente</h3>
+
+<input
+type="text"
+id="nombre"
+placeholder="Nombre completo">
+
+<input
+type="text"
+id="direccion"
+placeholder="Dirección de entrega">
+
+<input
+type="text"
+id="ciudad"
+placeholder="Ciudad">
+
+<input
+type="tel"
+id="telefono"
+placeholder="Teléfono">
+
+<textarea
+id="comentario"
+placeholder="Comentario adicional"></textarea>
+
+<button class="pedir" onclick="enviarPedido()">
+
+📲 Enviar pedido por WhatsApp
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let carrito = [];
+
+
+function agregar(nombre, selector, precio){
+
+    let color = document.getElementById(selector).value;
+
+    carrito.push({
+        nombre: nombre,
+        color: color,
+        capacidad: "256 GB",
+        precio: precio
+    });
+
+    actualizarCarrito();
+
+    alert(nombre + " agregado al carrito");
+
+}
+
+
+function actualizarCarrito(){
+
+    let lista = document.getElementById("lista");
+
+    lista.innerHTML = "";
+
+    let total = 0;
+
+    carrito.forEach((producto,index)=>{
+
+        total += producto.precio;
+
+        let div = document.createElement("div");
+
+        div.className = "item-carrito";
+
+        div.innerHTML = `
+        <strong>${producto.nombre}</strong>
+        256 GB<br>
+        Color: ${producto.color}<br>
+        Precio: $${producto.precio.toLocaleString("es-CO")} COP
+        <br>
+        <button class="eliminar"
+        onclick="eliminar(${index})">
+        Eliminar
+        </button>
+        `;
+
+        lista.appendChild(div);
+
+    });
+
+
+    document.getElementById("total").innerText =
+    "Total: $" + total.toLocaleString("es-CO") + " COP";
+
+
+    document.getElementById("contador").innerText =
+    carrito.length;
+
+}
+
+
+function eliminar(index){
+
+    carrito.splice(index,1);
+
+    actualizarCarrito();
+
+}
+
+
+function abrirCarrito(){
+
+    document.getElementById("panel")
+    .classList.add("activo");
+
+}
+
+
+function cerrarCarrito(){
+
+    document.getElementById("panel")
+    .classList.remove("activo");
+
+}
+
+
+function enviarPedido(){
+
+    if(carrito.length === 0){
+
+        alert("Tu carrito está vacío");
+
+        return;
+
+    }
+
+
+    let nombre =
+    document.getElementById("nombre").value;
+
+    let direccion =
+    document.getElementById("direccion").value;
+
+    let ciudad =
+    document.getElementById("ciudad").value;
+
+    let telefono =
+    document.getElementById("telefono").value;
+
+    let comentario =
+    document.getElementById("comentario").value;
+
+
+    if(!nombre || !direccion || !ciudad || !telefono){
+
+        alert("Por favor completa tus datos");
+
+        return;
+
+    }
+
+
+    let mensaje =
+    "📱 NUEVO PEDIDO - IPHONE STORE%0A%0A";
+
+
+    mensaje +=
+    "👤 Nombre: " + nombre + "%0A";
+
+    mensaje +=
+    "📍 Dirección: " + direccion + "%0A";
+
+    mensaje +=
+    "🏙️ Ciudad: " + ciudad + "%0A";
+
+    mensaje +=
+    "📞 Teléfono: " + telefono + "%0A%0A";
+
+
+    mensaje +=
+    "🛒 PRODUCTOS:%0A";
+
+
+    let total = 0;
+
+
+    carrito.forEach((producto,index)=>{
+
+        total += producto.precio;
+
+        mensaje +=
+        (index+1) + ". " +
+        producto.nombre +
+        " - 256 GB - " +
+        producto.color +
+        " - $" +
+        producto.precio.toLocaleString("es-CO") +
+        " COP%0A";
+
+    });
+
+
+    mensaje += "%0A💰 *TOTAL: $" +
+    total.toLocaleString("es-CO") +
+    " COP*%0A";
+
+
+    mensaje +=
+    "💳 Pago contra entrega con el 20% del valor%0A";
+
+
+    if(comentario){
+
+        mensaje +=
+        "📝 Comentario: " +
+        comentario +
+        "%0A";
+
+    }
+
+
+    let url =
+    "https://wa.me/573024537567?text=" +
+    mensaje;
+
+
+    window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
